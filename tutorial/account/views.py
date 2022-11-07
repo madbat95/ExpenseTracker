@@ -6,6 +6,8 @@ from account.serializers import AccountSerializer
 from rest_framework import generics
 
 from account.models import Account
+from .permissions import IsOwnerOrReadOnly
+
 
 
 class AccountList(generics.ListCreateAPIView):
@@ -20,4 +22,5 @@ class AccountList(generics.ListCreateAPIView):
 class AccountDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+    IsOwnerOrReadOnly]
