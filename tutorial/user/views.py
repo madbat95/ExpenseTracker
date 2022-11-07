@@ -13,6 +13,6 @@ class UserList(generics.ListAPIView): # new
     serializer_class = UserSerializer
 
 
-class UserDetail(generics.RetrieveUpdateDestroyAPIView): # new
+class UserDetail(generics.RetrieveAPIView): # new
     queryset = User.objects.all()
     serializer_class = UserSerializer
