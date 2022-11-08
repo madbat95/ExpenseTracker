@@ -3,7 +3,7 @@ from account.models import Account
 from user.models import User
 
 
-class AccountSerializer(serializers.ModelSerializer):
+class AccountSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.ReadOnlyField(source = 'user.username') 
     class Meta:
         model = Account

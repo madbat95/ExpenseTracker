@@ -3,9 +3,12 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from user import views
 
 urlpatterns = [
-    path('users/POST', views.UserCreate.as_view()),
-    path('users/', views.UserList.as_view()), # new
-    path('users/<int:pk>/', views.UserDetail.as_view()), # new
+     path('users/',
+        views.UserList.as_view(),
+        name='user-list'),
+    path('users/<int:pk>/',
+        views.UserDetail.as_view(),
+        name='user-detail')
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
