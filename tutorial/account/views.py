@@ -6,7 +6,6 @@ from account.serializers import AccountSerializer
 from rest_framework import generics
 from rest_framework import viewsets
 from account.models import Account
-from tutorial import user
 from .permissions import IsOwnerOrReadOnly
 from rest_framework.decorators import api_view
 from rest_framework.response import Response

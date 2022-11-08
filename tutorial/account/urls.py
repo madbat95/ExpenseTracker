@@ -2,21 +2,16 @@ from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 from account import views
 from .views import AccountViewSet, api_root
-
-account_list = AccountViewSet.as_view({
-    'get': 'list',
-    'post': 'create'
-})
-account_detail = AccountViewSet.as_view({
-    'get': 'retrieve',
-    'put': 'update',
-    'patch': 'partial_update',
-    'delete': 'destroy',
-})
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
 
-urlpatterns = format_suffix_patterns([
-    path('', api_root),
-    path('accounts/', account_list, name='account-list'),
-    path('accounts/<int:pk>/', account_detail, name='account-detail'),
-])
+# Create a router and register our viewsets with it.
+router = DefaultRouter()
+router.register(r'accounts', views.AccountViewSet,basename="account")
+
+# The API URLs are now determined automatically by the router.
+urlpatterns = [
+    path('', include(router.urls)),
+]
+
