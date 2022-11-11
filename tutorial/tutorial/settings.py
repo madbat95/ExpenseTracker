@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # 'expensetracker',
     'user',
     'account',
+    'transaction',
 ]
 
 MIDDLEWARE = [

@@ -1,32 +1,30 @@
 from requests import Response
 from rest_framework import permissions
-
-from account.models import Account
-from account.serializers import AccountSerializer
+from transaction.models import Transaction
+from transaction.serializers import TransactionSerializer
 from rest_framework import generics
 from rest_framework import viewsets
-from account.models import Account
-from .permissions import IsOwnerOrReadOnly
+from transaction.permissions import IsOwnerOrReadOnly
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-
 from rest_framework import permissions
+
 
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'users': reverse('user-list', request=request, format=format),
-        'accounts': reverse('account-list', request=request, format=format)
+        'accounts': reverse('account-list', request=request, format=format),
+        'transactions': reverse('transaction-list', request=request, format=format)
     })
 
-class AccountViewSet(viewsets.ModelViewSet):
+class TransactionViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-    queryset = Account.objects.all()
-    serializer_class = AccountSerializer
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly]
 
