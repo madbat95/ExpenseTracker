@@ -1,11 +1,12 @@
 from rest_framework import serializers
 
 from account.models import Account
-from .models import User
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    accounts = serializers.HyperlinkedRelatedField(many=True, view_name='account-detail', read_only=True) 
+class UserSerializer(serializers.ModelSerializer):
+    accounts = serializers.PrimaryKeyRelatedField(many=True, queryset=Account.objects.all()) 
 
     class Meta:
         model = User

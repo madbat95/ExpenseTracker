@@ -1,8 +1,14 @@
 from django.db import models
-from user.models import User
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 # Create your models here.
 class Account(models.Model):
     account_id = models.AutoField(primary_key = True)
-    user = models.ForeignKey('user.User',related_name='accounts', on_delete=models.CASCADE)
+    owner = models.ForeignKey(User,related_name='accounts', on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name

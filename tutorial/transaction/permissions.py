@@ -8,4 +8,4 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
             return True
 
         # Write permissions are only allowed to the account of the transaction.
-        return obj.account == request.account
+        return obj.owner == request.account

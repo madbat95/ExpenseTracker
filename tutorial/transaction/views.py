@@ -11,12 +11,7 @@ from rest_framework.reverse import reverse
 from rest_framework import permissions
 
 
-@api_view(['GET'])
-def api_root(request, format=None):
-    return Response({
-        'accounts': reverse('account-list', request=request, format=format),
-        'transactions': reverse('transaction-list', request=request, format=format)
-    })
+
 
 class TransactionViewSet(viewsets.ModelViewSet):
     """
@@ -26,7 +21,7 @@ class TransactionViewSet(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly]
+                           IsOwnerOrReadOnly]
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save()
