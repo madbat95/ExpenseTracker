@@ -13,15 +13,15 @@ from rest_framework import permissions
 
 
 
-class TransactionViewSet(viewsets.ModelViewSet):
-    """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
-    """
+class TransactionList(generics.ListCreateAPIView):    
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                           IsOwnerOrReadOnly]
+    #permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
-    def perform_create(self, serializer):
-        serializer.save()
+    # def perform_create(self, serializer):
+    #     serializer.save()
+
+class TransactionDetail(generics.RetrieveUpdateDestroyAPIView):
+    #this will a read-write-delete endpoint for each individual account
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer

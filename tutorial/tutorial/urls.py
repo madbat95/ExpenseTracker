@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')), # THIS WILL ADD A LOGIN VIEW TO YOUR API
     path('', include('account.urls')),
-    path('', include('user.urls'))
+    path('', include('user.urls')),
+    path('', include('transaction.urls'))
 ]
