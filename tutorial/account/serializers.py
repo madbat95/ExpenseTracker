@@ -2,21 +2,18 @@
 from rest_framework import serializers
 from account.models import Account
 from django.contrib.auth import get_user_model
-
 from transaction.serializers import TransactionSerializer
 from transaction.models import Transaction
 #from transaction.models import Transaction
 User = get_user_model()
-
-
 class AccountSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='User.username') #THIS IS REDUNDANT
-    #account_transactions = TransactionSerializer(read_only = True, many=True) 
+    account_transactions = TransactionSerializer(read_only = True, many=True) 
     #account_transactions = serializers.PrimaryKeyRelatedField(many=True, queryset=Transaction.objects.all())
 
     class Meta:
         model = Account
-        fields = ['account_id', 'name', 'owner'] #'account_transactions']  # 'transactions']
+        fields = ['account_id', 'name', 'owner', 'account_transactions']  # 'transactions']
 
 
     # def create(self, validated_data):
@@ -25,6 +22,7 @@ class AccountSerializer(serializers.ModelSerializer):
     #     account = Account.objects.create(**validated_data)
     #     for transaction_data in transactions_data:
     #         Account.objects.create(account=account, **transaction_data)
+            
     #     return account
 
     # def update(self, instance, validated_data):
