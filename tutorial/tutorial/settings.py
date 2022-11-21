@@ -34,18 +34,25 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+STANDARD_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
+    'django.contrib.staticfiles']
+
+LOCAL_APPS = [
     'user',
     'account',
-    'transaction',
-]
+    'transaction']
+    
+THIRD_PARTY = [
+    'rest_framework'
+    ]    
+
+
+INSTALLED_APPS = STANDARD_APPS + LOCAL_APPS + THIRD_PARTY
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
