@@ -2,25 +2,11 @@ from django.contrib.auth import get_user_model
 from requests_toolbelt import user_agent
 from rest_framework import generics
 from .serializers import UserDetailSerializer, UserSerializer
-
-
-User = get_user_model()
-
-class UserList(generics.ListAPIView):
-    
-    queryset=User.objects.all()
-    serializer_class=UserSerializer
-
-class UserDetail(generics.RetrieveAPIView):
-    queryset=User.objects.all()
-    serializer_class=UserSerializer
-
-
-
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+User = get_user_model()
 
 
 class UserList(APIView):
@@ -61,7 +47,7 @@ class UserDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+ 
     def delete(self, request, pk, format=None):
         user = self.get_object(pk)
         user.delete()
