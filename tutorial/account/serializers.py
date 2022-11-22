@@ -16,4 +16,15 @@ class AccountSerializer(serializers.ModelSerializer):
         fields = ('account_id', 'name', 'owner', ) #'account_transactions']  # 'transactions']
 
 
-   
+
+class AccountDetailSerializer(serializers.ModelSerializer):
+    account_transactions = TransactionSerializer(many=True)
+
+    class Meta:
+        model = Account
+        fields = ('account_id', 'name', 'account_transactions')
+        extra_kwargs = {
+           'account_id': {'read_only': True},
+            'name': {'read_only': True},
+            'account_transactions': {'read_only': True},
+        }

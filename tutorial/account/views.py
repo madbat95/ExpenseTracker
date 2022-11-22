@@ -4,6 +4,8 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from account.serializers import AccountDetailSerializer
+
 
 
 class AccountList(APIView):
@@ -23,7 +25,7 @@ class AccountList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserDetail(APIView):
+class AccountDetail(APIView):
     """
     View account Details and provide functionality for update, delete and read
     """
@@ -34,13 +36,13 @@ class UserDetail(APIView):
             raise Http404
 
     def get(self, request, pk, format=None):
-        user = self.get_object(pk)
-        serializer = AccountSerializer(user)
+        account = self.get_object(pk)
+        serializer = AccountDetailSerializer(account)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
-        user = self.get_object(pk)
-        serializer = AccountSerializer(user, data=request.data)
+        account = self.get_object(pk)
+        serializer = AccountSerializer(account, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
