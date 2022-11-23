@@ -8,7 +8,6 @@ class User(AbstractUser):
     name = models.CharField(max_length = 128, blank = False, default = '')
     dob = models.DateField()
 
-    pass
 
     def __str__(self):
         return self.name

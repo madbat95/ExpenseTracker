@@ -1,5 +1,8 @@
 #USER
 
+import email
+from sys import dont_write_bytecode
+from unicodedata import name
 from rest_framework import serializers
 from account.models import Account
 from django.contrib.auth import get_user_model
@@ -10,6 +13,11 @@ User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
     #accounts = AccountSerializer(many=True) #, queryset=Account.objects.all()) 
+    id = serializers.IntegerField(required=True)
+    username = serializers.CharField(required=True)
+    email = serializers.EmailField(required=True)
+    name = serializers.CharField(required=True)
+    dob = serializers.DateField(required=True)
 
     class Meta:
         model = User
