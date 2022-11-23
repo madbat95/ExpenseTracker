@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ExpensetrackerConfig(AppConfig):
+class AccountConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'expensetracker'
+    name = 'account'
