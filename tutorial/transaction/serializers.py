@@ -8,7 +8,7 @@ from .models import Transaction
 
 class TransactionSerializer(serializers.ModelSerializer):
     transaction_type = serializers.IntegerField(required=True)
-    account = serializers.IntegerField(required=True)
+    #account = serializers.PrimaryKeyRelatedField(many=True, queryset=Transaction.objects.all())
     category = serializers.CharField(required=True)
     description = serializers.CharField(required=True)
     amount = serializers.IntegerField(required=True)

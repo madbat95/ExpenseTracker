@@ -10,7 +10,7 @@ from account.serializers import AccountDetailSerializer
 
 class AccountList(APIView):
     """
-    List all snippets, or create a new snippet.
+    List all accounts, or create a new account.
     """
     def get(self, request, format=None):
         accounts = Account.objects.all()

@@ -4,9 +4,7 @@ from transaction.models import Transaction
 from transaction.serializers import TransactionSerializer
 from rest_framework.views import APIView
 from transaction.permissions import IsOwnerOrReadOnly
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.reverse import reverse
 from rest_framework import permissions, status
 from django.http import Http404
 
@@ -14,11 +12,11 @@ from django.http import Http404
 
 class TransactionList(APIView):
     """
-    List all snippets, or create a new snippet.
+    List all transactions, or create a new transaction.
     """
     def get(self, request, format=None):
-        accounts = Transaction.objects.all()
-        serializer = TransactionSerializer(accounts, many=True)
+        transactions = Transaction.objects.all()
+        serializer = TransactionSerializer(transactions, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
