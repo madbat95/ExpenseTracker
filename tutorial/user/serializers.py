@@ -30,8 +30,14 @@ class UserSerializer(serializers.ModelSerializer):
             'password': {'write_only': True}
         }
     def create(self, validated_data):
-        validated_data['password'] = make_password(validated_data['password'])
-        return super(UserSerializer, self).create(validated_data)
+        # validated_data['password'] = make_password(validated_data['password'])
+        # return super(UserSerializer, self).create(validated_data)
+        password = validated_data.pop('password', None)
+        instance = self.Meta.model(**validated_data)
+        if password is not None:
+            instance.set_password(password)
+        instance.save()
+        return instance
 
 
 class UserDetailSerializer(serializers.ModelSerializer):

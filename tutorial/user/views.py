@@ -1,6 +1,4 @@
 from django.contrib.auth import get_user_model
-from requests_toolbelt import user_agent
-from rest_framework import generics
 from .serializers import UserDetailSerializer, UserSerializer
 from django.http import Http404
 from rest_framework.views import APIView
@@ -17,7 +15,8 @@ class UserList(APIView):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
-
+        
+class UserCreate(APIView):
     def post(self, request, format=None):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
