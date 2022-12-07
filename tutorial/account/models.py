@@ -11,7 +11,7 @@ class Account(models.Model):
     account_id = models.AutoField(primary_key = True)
     owner = models.ForeignKey(User,related_name='accounts', on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
-    amount = models.PositiveIntegerField()
+    balance = models.PositiveIntegerField()
 
     def __str__(self):
         return  self.name

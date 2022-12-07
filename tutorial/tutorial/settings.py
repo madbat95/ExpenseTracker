@@ -49,7 +49,7 @@ LOCAL_APPS = [
     
 THIRD_PARTY = [
     'rest_framework',
-    'rest_framework_simplejwt',
+    #'rest_framework_simplejwt',
     ]    
 
 
@@ -70,7 +70,7 @@ ROOT_URLCONF = 'tutorial.urls'
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        #'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'PAGE_SIZE': 10
 }
