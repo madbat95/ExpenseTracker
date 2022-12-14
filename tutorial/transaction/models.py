@@ -17,14 +17,14 @@ class Transaction(models.Model):
     amount = models.FloatField()
     date = models.DateTimeField(auto_now_add=True)
     
-    def save(self, *args, **kwargs):
-        self.source.balance += self.amount
-        self.source.save()
-        super(Transaction, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.source.balance += self.amount
+    #     self.source.save()
+    #     super(Transaction, self).save(*args, **kwargs)
 
-    def delete(self, *args, **kwargs):
-        self.source.balance -= self.amount
-        self.source.save()
-        self.destination.balance += self.amount
-        self.destination.save()
-        super(Transaction, self).delete(*args, **kwargs) 
+    # def delete(self, *args, **kwargs):
+    #     self.source.balance -= self.amount
+    #     self.source.save()
+    #     self.destination.balance += self.amount
+    #     self.destination.save()
+    #     super(Transaction, self).delete(*args, **kwargs) 

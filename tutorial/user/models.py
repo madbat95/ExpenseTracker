@@ -10,6 +10,6 @@ class User(AbstractUser):
     user_uuid = models.UUIDField("UUID", default=uuid.uuid4, editable=False)
 
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 

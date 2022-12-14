@@ -3,13 +3,16 @@
 from rest_framework import serializers
 
 from .models import Transaction
-#from account.models import Account
+from account.models import Account
 
 
 class TransactionSerializer(serializers.ModelSerializer):
     transaction_type = serializers.CharField(required=True)
     #account = serializers.PrimaryKeyRelatedField(many=True, queryset=Transaction.objects.all())
     category = serializers.CharField(required=True)
+    
+    source = serializers.PrimaryKeyRelatedField(queryset=Account.objects.all())
+    destination =serializers.PrimaryKeyRelatedField(queryset=Account.objects.all())
     description = serializers.CharField(required=True)
     amount = serializers.IntegerField(required=True)
 
